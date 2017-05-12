@@ -27,4 +27,5 @@ public class DatabaseLoader implements ApplicationRunner{
     );
     users.save(customers);
   }
+
 }

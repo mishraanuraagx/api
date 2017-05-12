@@ -20,7 +20,7 @@ public class User {
   private Long firstPhoneNumber;
   private Long secondPhoneNumber;
 
-  protected User() {
+  public User() {
     super();
     setRole("user");
   }

@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -jar build/libs/herokuReady-0.1.0.jar
+web: java -Dserver.port=$PORT -jar build/libs/herokuReady-0.1.0.jar

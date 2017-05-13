@@ -49,6 +49,9 @@ public class MobileModel {
   }
 
   public void addProducts(Product product) {
+    if(products == null){
+      products = new ArrayList<>();
+    }
     products.add(product);
   }
 

@@ -6,6 +6,7 @@ package com.teamscreenbiz.api.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,19 +27,19 @@ public class Product {
   private MobileModel mobileModel;
   //TODO max: Create an ENUM classs later
   private final static String problem = "Screen Replace";
-  @ManyToMany
-  private List<Vendor> vendors;
   private double rating;
+  private int priceLowBound;
+  private int priceHighBound;
+  private int profit;
+  @ManyToMany(fetch = FetchType.EAGER,mappedBy = "products")
+  private List<Vendor> vendors;
 
-  @OneToMany
+  @OneToMany(fetch = FetchType.EAGER,mappedBy = "product")
   private List<Transaction> transactions;
 
 
   public Product(){
     super();
-    vendors = new ArrayList<>();
-    transactions = new ArrayList<>();
-
   }
 
   public Product(String name, double rating) {
@@ -51,6 +52,9 @@ public class Product {
   }
 
   public void addTransaction(Transaction transaction) {
+    if(transactions == null){
+      transactions = new ArrayList<>();
+    }
     transactions.add(transaction);
   }
 
@@ -71,8 +75,12 @@ public class Product {
     return vendors;
   }
   public void addVendor(Vendor vendor){
-    vendor.addProduct(this);
+
+    if(vendors == null){
+      vendors = new ArrayList<>();
+    }
     vendors.add(vendor);
+    vendor.addProduct(this);
   }
 
 
@@ -94,5 +102,37 @@ public class Product {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public double getRating() {
+    return rating;
+  }
+
+  public void setRating(double rating) {
+    this.rating = rating;
+  }
+
+  public int getPriceLowBound() {
+    return priceLowBound;
+  }
+
+  public void setPriceLowBound(int priceLowBound) {
+    this.priceLowBound = priceLowBound;
+  }
+
+  public int getPriceHighBound() {
+    return priceHighBound;
+  }
+
+  public void setPriceHighBound(int priceHighBound) {
+    this.priceHighBound = priceHighBound;
+  }
+
+  public int getProfit() {
+    return profit;
+  }
+
+  public void setProfit(int profit) {
+    this.profit = profit;
   }
 }

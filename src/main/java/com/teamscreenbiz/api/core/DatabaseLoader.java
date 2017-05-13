@@ -2,7 +2,10 @@ package com.teamscreenbiz.api.core;
 
 import com.teamscreenbiz.api.model.Company;
 import com.teamscreenbiz.api.model.MobileModel;
+import com.teamscreenbiz.api.model.Product;
+import com.teamscreenbiz.api.model.Transaction;
 import com.teamscreenbiz.api.model.User;
+import com.teamscreenbiz.api.model.Vendor;
 import com.teamscreenbiz.api.repository.CompanyRepository;
 import com.teamscreenbiz.api.repository.MobileModelRepository;
 import com.teamscreenbiz.api.repository.ProductRepository;
@@ -82,7 +85,39 @@ public class DatabaseLoader implements ApplicationRunner{
     }
     mobileModelRepository.save(mobiles);
 
+    for(int i =0;i<100;i++){
+      Product prod = new Product("product"+ram.nextInt(9999),3 + ram.nextInt(2)+((double)ram.nextInt(10)/10));
+      products.save(prod);
+      prod.setMobileModel(mobiles.get(ram.nextInt(mobiles.size())));
+    }
 
+    String[] shopName = {"Halleluyeah","mega","destroyer","Holly","Shallow","Dung","Master","Mother Of",
+    "LALALALA","Molly","Man","C'mon"};
+
+    String[] shopDesc = {"JollyBolly","BalooBhai","font","HorlicksDrinker","BlackJacksSucker"};
+
+    String[] city = {"Chandigarh","Mohali","Panchkula"};
+
+    for(int i=0;i<10;i++){
+      Vendor vendor = new Vendor(shopName[ram.nextInt(shopName.length)]+shopName[ram.nextInt(shopName.length)]);
+      vendor.setAddress("SCO - "+ram.nextInt(500)+", Sec - " + ram.nextInt(50)+" city: "
+      + city[ram.nextInt(city.length)] + ", PIN : " + ram.nextInt(17) + "00" + ram.nextInt(50));
+      for(int j=10;j<10+ram.nextInt(10);j++){
+        vendor.addProduct(products.findById((long) ram.nextInt(100)));
+      }
+      vendor.setDesc(shopName[ram.nextInt(shopName.length)]);
+      vendors.save(vendor);
+    }
+
+    for (int i=0;i<100;i++){
+      Transaction trans = new Transaction("");
+      User user = users.findById((long) ram.nextInt(4));
+      Vendor vendor = vendors.findById((long) ram.nextInt(10));
+      Product prod = products.findById((long) ram.nextInt(100));
+      transactions.save(trans);
+      trans.setProduct(prod);
+      trans.setUser(user);
+    }
 
   }
 }

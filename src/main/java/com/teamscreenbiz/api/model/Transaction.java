@@ -15,10 +15,10 @@ public class Transaction {
   @GeneratedValue(strategy =  GenerationType.AUTO)
   protected Long id;
 
-  @NotNull
+//  @NotNull
   @ManyToOne
   private User user;
-  @NotNull
+//  @NotNull
   @ManyToOne
   private Product product;
   @ManyToOne
@@ -30,11 +30,7 @@ public class Transaction {
     super();
   }
 
-  public Transaction(User user, Product product, Vendor vendor, int price, String desc) {
-    this.user = user;
-    this.product = product;
-    this.vendor = vendor;
-    this.price = price;
+  public Transaction(String desc) {
     this.desc = desc;
   }
 
@@ -52,6 +48,8 @@ public class Transaction {
 
   public void setProduct(Product product) {
     this.product = product;
+    System.out.println(this);
+    product.addTransaction(this);
   }
 
   public Vendor getVendor() {

@@ -4,6 +4,7 @@ package com.teamscreenbiz.api.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,25 +24,18 @@ public class Vendor {
   private int[] rating = new int[6];
   private int finalRating;
   private String desc;
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
+  //TODO max: mappedBy = "products" causing error Well its a issue with owning No need to do anything
   private List<Product> products;
-  @OneToMany
+  @OneToMany(mappedBy = "vendor")
   private List<Transaction> transactions;
 
   protected Vendor(){
     super();
-    products = new ArrayList<>();
-    transactions = new ArrayList<>();
   }
 
-  public Vendor(String name, String address, Long phoneNumber, int[] rating, int finalRating,
-                String desc) {
+  public Vendor(String name) {
     this.name = name;
-    this.address = address;
-    this.phoneNumber = phoneNumber;
-    this.rating = rating;
-    this.finalRating = finalRating;
-    this.desc = desc;
   }
 
   public List<Transaction> getTransactions() {
@@ -49,6 +43,9 @@ public class Vendor {
   }
 
   public void addTransaction(Transaction transaction) {
+    if(transactions == null){
+      transactions = new ArrayList<>();
+    }
     transactions.add(transaction);
   }
 
@@ -105,6 +102,9 @@ public class Vendor {
   }
 
   public void addProduct(Product product) {
+    if(products == null){
+      products = new ArrayList<>();
+    }
     products.add(product);
 
   }

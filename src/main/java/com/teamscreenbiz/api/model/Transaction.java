@@ -26,6 +26,8 @@ public class Transaction {
   private int price;
   private String desc;
 
+
+
   protected Transaction(){
     super();
   }

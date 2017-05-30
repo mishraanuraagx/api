@@ -1,10 +1,7 @@
 package com.teamscreenbiz.api.model;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-//import com.teamscreenbiz.core.BaseEntity;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +57,7 @@ public class User {
   boolean secondPhoneNumberConfirmed;
 //  TODO max: check for hypenated mobile number
   private Long secondPhoneNumber;
-  @OneToMany
+  @OneToMany(mappedBy = "user")
   private List<Transaction> transactions;
 
 

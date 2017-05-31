@@ -1,6 +1,8 @@
 package com.teamscreenbiz.api.model;
 
 
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;

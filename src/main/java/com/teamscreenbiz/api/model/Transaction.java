@@ -25,7 +25,7 @@ public class Transaction {
   private Vendor vendor;
   private int price;
   private String desc;
-
+  private String staus; //
 
 
   protected Transaction(){

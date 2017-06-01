@@ -6,7 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(exported = false)
 public interface CompanyRepository extends JpaRepository<Company,Long> {
 
   Company findByCompanyName(String companyName);

@@ -51,13 +51,13 @@ public class DatabaseLoader implements ApplicationRunner{
   @Override
   public void run(ApplicationArguments args) throws Exception {
     List<User> customers =Arrays.asList(
-//        new User("Shubham","Wadhwa","lethal","lives"),
-//        new User("Harsh","Singh","hpsindia","blackout"),
-//        new User("Baljit","Singh","baloo","fontbhai"),
-//        new User("Jatin","","veryhighly","talented")
+        new User("Shubham","Wadhwa","lethal","lives"),
+        new User("Harsh","Singh","hpsindia","blackout"),
+        new User("Baljit","Singh","baloo","fontbhai"),
+        new User("Jatin","","veryhighly","talented")
     );
     users.save(customers);
-    User mishra = new User("Astitav","Ashley","maximum","force");
+    User mishra = new User("Anuraag","Mishra","maximum","force");
     mishra.setRoles(new String[]{"Admin"});
     users.save(mishra);
 

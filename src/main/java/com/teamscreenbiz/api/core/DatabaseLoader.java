@@ -57,7 +57,7 @@ public class DatabaseLoader implements ApplicationRunner{
         new User("Jatin","","veryhighly","talented")
     );
     users.save(customers);
-    User mishra = new User("Anuraag","Mishra","maximum","force");
+    User mishra = new User("Anuraag","Mishrat ","maximum","force");
     mishra.setRoles(new String[]{"Admin"});
     users.save(mishra);
 
